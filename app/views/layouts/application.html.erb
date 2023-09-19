@@ -7,14 +7,24 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/83655083cf.js" crossorigin="anonymous"></script>
-    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-      <header>
+
+  <header>
+  <nav class = "navbar navbarexpand-lg navbar-dark">
+    <div class = "container">
+      <a class = "navbar-brand" href = "/">
+        <span>Bookers</span>
+      </a>
+      <button class = "navbar-toggler">
+
+
     <span class="title">Bookers</span>
+    <%= link_to "Bookers", root_path %>
+
     <% if user_signed_in? %>
       <li>
         <%= link_to root_path do %>
@@ -59,16 +69,26 @@
       </li>
     <% end %>
 
-    <footer>
-      <div class='container mt-5'>
-        <div class='row'>
-           <div class='mx-auto'>
-         		<p>CopyRight Infratop.inc</p>
-         	</div>
-        </div>
-      </div>
-    </footer>
+    </div>
+  </nav>
+  </header>
 
+        </a>
+      <div>
+
+  <main>
     <%= yield %>
+  </main>
+
+  <footer>
+    <div class = 'container mt-5'>
+      <div class = 'row'>
+         <div class = 'mx-auto' style = "margin-top:auto;">
+       		<p>CopyRight Infratop.inc</p>
+       	</div>
+      </div>
+    </div>
+  </footer>
+
   </body>
 </html>
