@@ -38,7 +38,6 @@
         <%= f.text_area :body %>
 
         <%= f.submit class: "btn btn-success btn-sm btn-block mb-3" do %>Create Book
-        <%#= f.submit 'Create Book' %>
         <% end %>
       <% end %>
       </div>
@@ -54,7 +53,13 @@
         　   </tr>
        　  </thear>
       　   <tbody>
-      　     <!--投稿されたもの-->
+            <% @books.each do |book| %>
+              <tr>
+                <tb><%= link_to plofile_image,user_path do %></tb>
+                <td><%= book.title %></td>
+                <td><%= book.body %></td>
+              </tr>
+            <% end %>
        　  </tbody>
      　   </table>
       </div>
