@@ -2,13 +2,16 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
+    # @user_image = user.profile_image
     @users = User.all
     @books = Book.all
+    @book = Book.new
   end
 
   def show
-    @user = current_user
-    @books = Book.all
+    @user = User.find(params[:id])
+    @books = @user.books
+    @book = Book.new
   end
 
   def edit
@@ -18,8 +21,30 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to user_path(@user.id)
+        # １. データを受け取り新規登録するためのインスタンス作成
+    @newuser = User.new(user_params)
+    # 2. データをデータベースに保存するためのsaveメソッド実行
+    if @user.save
+      # 3. フラッシュメッセージを定義し、詳細画面へリダイレクト
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(@user.id)
+    else
+      render :new
+    end
   end
+
+   def create
+    # １. データを受け取り新規登録するためのインスタンス作成
+    @book = Book.new(book_params)
+    # 2. データをデータベースに保存するためのsaveメソッド実行
+    if @book.save
+      # 3. フラッシュメッセージを定義し、詳細画面へリダイレクト
+      flash[:notice] = "Signed in successfully."
+      redirect_to  user_path(current_user)
+    else
+      render :new
+    end
+   end
 
   private
 
