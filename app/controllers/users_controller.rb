@@ -2,9 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    # @user_image = user.profile_image
     @users = User.all
-    @books = Book.all
     @book = Book.new
   end
 
@@ -29,7 +27,8 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
-      render :new
+      flash[:error] = "user was error create"
+      render :edit
     end
   end
 
@@ -42,7 +41,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Signed in successfully."
       redirect_to  user_path(current_user)
     else
-      render :new
+      render :top
     end
    end
 
