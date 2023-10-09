@@ -32,7 +32,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params) # 引数
+    @book = current_user.books.new(book_params) # 引数
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "Book was successfully created."
